@@ -1,0 +1,129 @@
+Neste documento apresento a interpretação das consultas realizadas
+sobre o banco de dados da VelozCar, buscando extrair insights úteis
+para a gestão da concessionária.
+
+1. CONTRATOS POR STATUS
+   SELECT status, COUNT(*) FROM Contrato_Aluguel GROUP BY status
+
+Resultado: 12 finalizados, 2 ativos, 1 atrasado.
+
+A maior parte dos contratos já foi encerrada normalmente, o que
+indica um bom giro de locações. O contrato atrasado chama atenção
+pois representa um veículo fora da frota disponível sem previsão
+de retorno. A empresa deveria ter um alerta automático para
+contratos que ultrapassam a data de devolução.
+
+
+2. VALORES DOS CONTRATOS
+   SELECT AVG, MIN, MAX(valor_total) FROM Contrato_Aluguel
+
+Resultado: média R$ 530,93 | mínimo R$ 250,00 | máximo R$ 1.150,00
+
+O ticket médio de R$ 530,93 é uma informação valiosa para metas
+de faturamento. A variação entre mínimo e máximo mostra que a
+frota atende desde locações curtas e baratas até contratos longos
+de veículos premium, o que é um ponto positivo da diversidade
+da frota.
+
+
+3. ARRECADAÇÃO POR MÉTODO DE PAGAMENTO
+   SELECT metodo, COUNT(*), SUM(valor) FROM Pagamento GROUP BY metodo
+
+Resultado: PIX lidera com 6 pagamentos e maior valor arrecadado,
+seguido de Cartão (5) e Boleto (3).
+
+O PIX é claramente o preferido dos clientes. Como ele não tem
+custo de transação para a empresa (ao contrário do cartão), a
+VelozCar poderia incentivar ainda mais seu uso com um pequeno
+desconto, reduzindo custos operacionais.
+
+
+4. MULTAS PENDENTES
+   SELECT status, SUM(multa) FROM Pagamento GROUP BY status
+
+Resultado: R$ 50,00 em multas com status Pendente.
+
+Apesar do valor pequeno, a existência de multa pendente indica
+que o processo de cobrança precisa ser ativo. Uma política de
+bloqueio de novos aluguéis para clientes com débitos evitaria
+o acúmulo desse tipo de inadimplência.
+
+
+5. MANUTENÇÕES POR TIPO
+   SELECT tipo, COUNT(*), SUM(custo) FROM Manutencao GROUP BY tipo
+
+Resultado: Corretiva = 6 ocorrências e R$ 4.500,00
+           Preventiva = 4 ocorrências e R$ 1.360,00
+
+Este resultado é preocupante: a empresa gasta muito mais
+corrigindo problemas do que prevenindo. Cada manutenção
+corretiva custa em média R$ 750,00 contra R$ 340,00 da
+preventiva. Investir em revisões periódicas reduziria custos
+e manteria mais veículos disponíveis.
+
+
+6. MÉDIA DE DIÁRIA POR MARCA
+   SELECT marca, AVG(valor_diaria) FROM Veiculo GROUP BY marca
+
+Resultado: Tesla R$ 380,00 | Toyota R$ 285,00 | VW R$ 143,00
+
+A frota cobre desde veículos populares até premium. Isso permite
+atender diferentes perfis de clientes. Uma estratégia de
+marketing segmentada por faixa de renda poderia aumentar a
+ocupação de toda a frota.
+
+
+7. CLIENTES COM CONTRATOS ATIVOS/ATRASADOS (INNER JOIN)
+   JOIN entre Cliente e Contrato_Aluguel
+
+Resultado: Ana Beatriz (atrasado), Carlos Eduardo e Fernanda
+(ativos).
+
+Este é o relatório mais urgente operacionalmente. Ana Beatriz
+está com veículo retido além do prazo. Os outros dois clientes
+têm devolução próxima e deveriam receber um lembrete preventivo.
+
+
+8. VISÃO COMPLETA DOS CONTRATOS (INNER JOIN múltiplo)
+   JOIN entre Contrato_Aluguel + Cliente + Veiculo + Pagamento
+
+Esta consulta cruza 4 tabelas e entrega a visão mais completa
+do sistema: quem alugou, qual veículo, quanto pagou, como pagou
+e se o pagamento foi concluído.
+
+Os 3 contratos ainda abertos têm pagamento pendente, totalizando
+R$ 1.466,00 a receber. Esse número é exatamente o que um gestor
+precisa ver no início do dia para priorizar cobranças.
+
+
+9. VEÍCULOS E MANUTENÇÕES (LEFT JOIN)
+   LEFT JOIN entre Veiculo e Manutencao
+
+O LEFT JOIN garante que veículos sem manutenção registrada
+também apareçam. O Cruze foi o mais caro (R$ 1.200,00 em
+amortecedores). Veículos com histórico de manutenções corretivas
+caras devem ser avaliados para possível substituição na frota.
+
+
+10. FUNCIONÁRIOS E MANUTENÇÕES (LEFT JOIN)
+    LEFT JOIN entre Funcionario e Manutencao
+
+Permite identificar quais mecânicos estão mais sobrecarregados
+e quais funcionários (atendentes e gerentes) não têm vínculo
+com manutenções. Útil para avaliar a distribuição de tarefas
+dentro da equipe técnica.
+
+
+CONCLUSÃO GERAL
+
+A análise dos dados revela que a VelozCar tem uma operação
+razoavelmente saudável: boa taxa de contratos finalizados,
+diversidade de frota e métodos de pagamento modernos. Os
+principais pontos de atenção são:
+
+  - 1 contrato atrasado com veículo fora da frota
+  - Custo elevado com manutenções corretivas vs preventivas
+  - R$ 1.466,00 em pagamentos ainda pendentes
+
+Endereçar esses três pontos já representaria uma melhoria
+significativa na eficiência operacional da concessionária.
