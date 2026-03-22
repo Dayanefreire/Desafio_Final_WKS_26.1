@@ -1,0 +1,137 @@
+VELOZCAR — ANÁLISE DO DASHBOARD POWER BI
+
+Dataset: pneumologista_joao_limpo.csv
+Registros analisados: 389 pacientes (após remoção de duplicatas)
+Páginas do dashboard: 2
+
+PÁGINA 1 — VISÃO GERAL
+O dashboard apresenta 389 pacientes no total, dos quais 76 foram
+classificados como em risco de câncer de pulmão, representando
+19,5% da amostra. A idade média dos pacientes é de 47 anos,
+o que indica uma população predominantemente adulta de meia-idade.
+
+DISTRIBUIÇÃO DE RISCO (Rosca)
+80,46% dos pacientes estão classificados como Sem Risco e 19,54%
+como Risco. Embora a maioria esteja fora da zona de risco, quase
+1 em cada 5 pacientes apresenta indicadores preocupantes — uma
+proporção que justifica a implementação de um sistema de triagem
+preventiva na clínica do Dr. João.
+
+PROPORÇÃO DE RISCO POR TABAGISMO (Barras 100% Empilhadas)
+Este é o gráfico mais impactante da página 1. Entre pacientes
+não fumantes, apenas 5,99% estão em risco. Já entre fumantes,
+a proporção sobe para 49,18% — quase metade dos fumantes
+apresenta risco de câncer de pulmão. Isso confirma o tabagismo
+como o principal fator de risco da amostra e sugere que o Dr.
+João deveria priorizar pacientes fumantes em seus protocolos
+de rastreamento.
+
+PACIENTES POR FAIXA DE IDADE (Colunas)
+A maior concentração de pacientes está entre 35 e 55 anos,
+com pico na faixa dos 40 anos. Esse perfil etário é consistente
+com a faixa de maior incidência de diagnósticos de câncer de
+pulmão, reforçando a importância de exames preventivos regulares
+para pacientes nessa faixa.
+
+RISCO POR SEXO (Barras)
+O sexo feminino apresenta o maior volume absoluto de pacientes
+na amostra, seguido pelo masculino e pela categoria Outro.
+A distribuição relativamente equilibrada entre os grupos sugere
+que o risco de câncer de pulmão não tem forte predominância
+de sexo nesta amostra, diferente do que estudos históricos
+indicavam — possivelmente reflexo do aumento do tabagismo
+feminino nas últimas décadas.
+
+
+PÁGINA 2 — FATORES DE RISCO CLÍNICO
+
+FATORES DE RISCO — % POR FATOR (Funil)
+O funil ranqueia os principais fatores de risco por proporção
+de pacientes afetados:
+
+  1. Tabagismo        — 49,18% dos fumantes estão em risco
+  2. Exposição Alta à Poluição — 49,12% dos expostos estão em risco
+  3. Histórico Familiar        — 40,00% com histórico estão em risco
+  4. Doença Crônica            — 16,67% com doença crônica em risco
+
+O resultado mais surpreendente é o empate técnico entre tabagismo
+e exposição à poluição. Isso indica que a qualidade do ar na
+região dos pacientes pode ser tão determinante quanto o hábito
+de fumar — um dado relevante para políticas de saúde pública.
+O histórico familiar em terceiro lugar reforça o componente
+genético da doença.
+
+HISTÓRICO FAMILIAR DE CÂNCER DE PULMÃO
+Pacientes com histórico familiar de câncer de pulmão apresentam
+proporção de risco visivelmente maior do que aqueles sem histórico.
+Isso sugere que o Dr. João deveria incluir o mapeamento do
+histórico familiar como etapa obrigatória na ficha de anamnese.
+
+DOENÇA CRÔNICA
+Surpreendentemente, pacientes com doença crônica apresentaram
+proporção de risco menor que o esperado (16,67%). Isso pode
+indicar que esses pacientes já estão sob acompanhamento médico
+regular e por isso recebem diagnósticos mais precoces — ou que
+as doenças crônicas registradas no dataset não têm relação
+direta com câncer pulmonar.
+
+HISTÓRICO DE TABAGISMO FAMILIAR
+Pacientes com histórico de tabagismo na família apresentam
+proporção de risco maior que os sem histórico, mesmo quando
+eles próprios não fumam. Isso evidencia o impacto do tabagismo
+passivo ao longo da vida — um fator frequentemente subestimado
+nas consultas médicas.
+
+EXPOSIÇÃO À POLUIÇÃO
+Pacientes com alta exposição à poluição têm a maior proporção
+de risco entre os três níveis (Baixa/Média/Alta), confirmando
+a poluição ambiental como fator crítico. A distribuição mostra
+que 49,36% dos pacientes vivem em áreas de baixa poluição —
+o que torna ainda mais alarmante o fato de que mesmo assim
+quase 20% da amostra total está em risco.
+
+FRAQUEZA IMUNOLÓGICA ENTRE PACIENTES EM RISCO (Pizza)
+Entre os 76 pacientes classificados como em risco, 88,16%
+apresentam fraqueza imunológica. Esse dado é clinicamente
+relevante: um sistema imunológico comprometido reduz a
+capacidade do organismo de identificar e destruir células
+cancerígenas em estágio inicial. Isso sugere que intervenções
+que fortaleçam o sistema imune — como mudanças de estilo de
+vida, suplementação e tratamento de infecções recorrentes —
+podem ser aliadas no combate ao risco de câncer de pulmão.
+
+IMC MÉDIO POR FAIXA DE IDADE (Linha)
+O IMC médio dos pacientes fica entre 26,5 e 27,5 ao longo da
+maioria das faixas etárias, o que classifica a amostra como
+em sobrepeso leve. O pico ocorre na faixa dos 20-30 anos e
+a queda mais acentuada acontece na faixa dos 50 anos, com
+recuperação aos 70+. O sobrepeso está associado à inflamação
+crônica, que pode favorecer o desenvolvimento de tumores —
+mais um indicador que o Dr. João poderia monitorar em conjunto
+com os demais fatores de risco.
+
+
+CONCLUSÃO GERAL
+
+A análise do dataset do Dr. João revelou que o risco de câncer
+de pulmão é multifatorial e está concentrado em pacientes com
+combinação de fatores — especialmente tabagismo + exposição à
+poluição + fraqueza imunológica.
+
+Os três principais insights práticos para a clínica são:
+
+  1. Pacientes fumantes devem ser submetidos a rastreamento
+     imediato — quase metade está em risco.
+
+  2. A qualidade do ar da região do paciente deve ser
+     investigada na anamnese — seu impacto é equivalente
+     ao do tabagismo.
+
+  3. Quase 9 em cada 10 pacientes em risco apresentam
+     fraqueza imunológica — intervenções nessa área podem
+     ser decisivas para prevenção.
+
+A remoção de 611 registros duplicados antes da análise foi
+essencial para garantir a confiabilidade dos resultados.
+Trabalhar com dados limpos é o primeiro passo para qualquer
+análise clínica responsável.
